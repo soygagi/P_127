@@ -1,4 +1,8 @@
 cancion = "";
+izquierdaX = 0;
+izquierdaY = 0;
+derechaX = 0;
+derechaY = 0;
 function preload(){
     cancion = loadSound("music.mp3");
 }
@@ -8,10 +12,28 @@ function setup(){
 
     video = createCapture(VIDEO);
     video.hide();
+    poseNet = ml5.poseNet(video,modelLoaded);
+    poseNet.on('pose',gotPoses);
+}
+function gotPoses(results){
+    if(results.lenght>0){
+        console.log(results);
+       izquierdaX = results[0].pose.leftWrist.x;
+       izquierdaY = results[0].pose.leftWrist.y;
+       console.log("izquierda x: "+izquierdax+ "izquierdaY: "+izquierdaY);
+       derechaX = results[0].pose.rightWrist.x;
+       derechaY = results[0].pose.rightwrist.y;
+       console.log("derecha x: "+derechax+ "derechaY: "+derechay);
+    }  
+}
+function modelLoaded(){
+     console.log("INICIALIZAR");
 }
 function draw(){
     image(video, 0, 0, 500,500);
 }
 function play(){
     cancion.play();
+    cancion.setVolume(1);
+    cancion.rate(1);
 }
