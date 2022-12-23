@@ -36,6 +36,23 @@ function draw(){
     image(video, 0, 0, 500,500);
     fill("FF0000");
     stroke("#FF0000");
+    circle(derechaX, derechaY,20);
+    if(derechaY>0&&derechaY<=100){
+        document.getElementById("speed").innerHTML = "Velocidad = 0.5";
+        song.rate(0.5);
+    }else if(derechaY>100&&derechaY<=200){
+        document,getElementById("speed").innerHTML = "Velocidad = 1x";
+        song.rate(1);
+    }else if(derechaY>200&&derechaY<=300){
+        document.getElementById("speed").innerHTML = "Velocidad = 1.5x";
+        song.rate(1.5);
+    }else if(derechaY>300&&derechaY<=400){
+        document.getElementById("speed").innerHTML = "Velocidad =2x";
+        song.rate(2);
+    }else if(derechaY>400&&derechaY<=500){
+        document.getElementById("speed").innerHTML = "Velidad = 2.5x"
+        song.rate(2.5);
+    }
     if(scoreizquierda > 0.2){
     circle(izquierdaX, izquierdaY,20);
     Numeroizquierday = Number(izquierdaY);
