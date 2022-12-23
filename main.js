@@ -4,6 +4,7 @@ izquierdaY = 0;
 derechaX = 0;
 derechaY = 0;
 scoreizquierda = 0;
+scorederecha = 0;
 function preload(){
     cancion = loadSound("music.mp3");
 }
@@ -17,13 +18,14 @@ function setup(){
     poseNet.on('pose',gotPoses);
 }
 function gotPoses(results){
-    if(results.lenght>0){
+    if(results.length>0){
         console.log(results);
         scoreizquierda = results[0].pose.keypoints[9].score;
+        scorederecha = results[0].pose.keypoints[10].score;
         console.log("scoreizquierda = "+scoreizquierda);
        izquierdaX = results[0].pose.leftWrist.x;
        izquierdaY = results[0].pose.leftWrist.y;
-       console.log("izquierda x: "+izquierdax+ "izquierdaY: "+izquierdaY);
+       console.log("izquierda x: "+izquierdaX+ "izquierdaY: "+izquierdaY);
        derechaX = results[0].pose.rightWrist.x;
        derechaY = results[0].pose.rightwrist.y;
        console.log("derecha x: "+derechax+ "derechaY: "+derechay);
